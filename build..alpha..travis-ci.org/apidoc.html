@@ -1,0 +1,160 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/chrisgreeff/gulp-logger"
+
+    >gulp-logger (v0.0.2)</a>
+</h1>
+<h4>Gulp plugin for logging stream stages, transformation and progress</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-logger">module gulp-logger</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-logger.gulp-logger">
+            function <span class="apidocSignatureSpan"></span>gulp-logger
+            <span class="apidocSignatureSpan">(fnOpts, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-logger.toString">
+            function <span class="apidocSignatureSpan">gulp-logger.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-logger" id="apidoc.module.gulp-logger">module gulp-logger</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-logger.gulp-logger" id="apidoc.element.gulp-logger.gulp-logger">
+        function <span class="apidocSignatureSpan"></span>gulp-logger
+        <span class="apidocSignatureSpan">(fnOpts, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">gulp-logger = function (fnOpts, opts) {
+    var options = typeof fnOpts === &#x27;object&#x27; ? fnOpts : opts,
+        beforeComplete = false,
+        afterComplete = false;
+
+    if (options) {
+        utils.colorsEnabled = typeof options.colors !== &#x27;undefined&#x27; ? options.colors : true;
+    }
+
+    function loggerEndHandler(flushCallback) {
+        if (options &#x26;&#x26; options.after &#x26;&#x26; !afterComplete) {
+            log(colorTrans(options.after, &#x27;cyan&#x27;));
+            afterComplete = true;
+        }
+
+        flushCallback();
+    }
+
+    return through.obj(function(file, ext, streamCallback) {
+        var filePath = file.path;
+
+        if (options &#x26;&#x26; options.before &#x26;&#x26; !beforeComplete) {
+            log(colorTrans(options.before, &#x27;cyan&#x27;));
+            beforeComplete = true;
+        }
+
+        if (typeof fnOpts === &#x27;function&#x27;) {
+            processFunction(filePath, fnOpts, opts);
+        } else if (typeof fnOpts === &#x27;object&#x27;) {
+            processFilePath(filePath, fnOpts);
+        } else {
+            log(utils.getRelativePath(filePath));
+        }
+
+        streamCallback(null, file);
+    }, loggerEndHandler);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-logger.toString" id="apidoc.element.gulp-logger.toString">
+        function <span class="apidocSignatureSpan">gulp-logger.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
