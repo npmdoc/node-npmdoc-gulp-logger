@@ -1,4 +1,7 @@
-# api documentation for  [gulp-logger (v0.0.2)](https://github.com/chrisgreeff/gulp-logger)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-logger.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-logger) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-logger.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-logger)
+# npmdoc-gulp-logger
+
+#### api documentation for  [gulp-logger (v0.0.2)](https://github.com/chrisgreeff/gulp-logger)  [![npm package](https://img.shields.io/npm/v/npmdoc-gulp-logger.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-gulp-logger) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-gulp-logger.svg)](https://travis-ci.org/npmdoc/node-npmdoc-gulp-logger)
+
 #### Gulp plugin for logging stream stages, transformation and progress
 
 [![NPM](https://nodei.co/npm/gulp-logger.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/gulp-logger)
@@ -68,7 +71,8 @@
     "scripts": {
         "test": "node test/test.js"
     },
-    "version": "0.0.2"
+    "version": "0.0.2",
+    "bin": {}
 }
 ```
 
