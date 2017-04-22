@@ -65,9 +65,43 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.gulp-logger.toString">
-            function <span class="apidocSignatureSpan">gulp-logger.</span>toString
-            <span class="apidocSignatureSpan">()</span>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">gulp-logger.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.gulp-logger.utils">module gulp-logger.utils</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">gulp-logger.utils.</span>colorsEnabled</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-logger.utils.colorTrans">
+            function <span class="apidocSignatureSpan">gulp-logger.utils.</span>colorTrans
+            <span class="apidocSignatureSpan">(message, color)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-logger.utils.getDisplayPath">
+            function <span class="apidocSignatureSpan">gulp-logger.utils.</span>getDisplayPath
+            <span class="apidocSignatureSpan">(filePath, display)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.gulp-logger.utils.getRelativePath">
+            function <span class="apidocSignatureSpan">gulp-logger.utils.</span>getRelativePath
+            <span class="apidocSignatureSpan">(filePath)</span>
             </a>
 
         </li>
@@ -129,17 +163,94 @@
 
 
 
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.gulp-logger.utils" id="apidoc.module.gulp-logger.utils">module gulp-logger.utils</a></h1>
+
+
+
+
     <h2>
-        <a href="#apidoc.element.gulp-logger.toString" id="apidoc.element.gulp-logger.toString">
-        function <span class="apidocSignatureSpan">gulp-logger.</span>toString
-        <span class="apidocSignatureSpan">()</span>
+        <a href="#apidoc.element.gulp-logger.utils.colorTrans" id="apidoc.element.gulp-logger.utils.colorTrans">
+        function <span class="apidocSignatureSpan">gulp-logger.utils.</span>colorTrans
+        <span class="apidocSignatureSpan">(message, color)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
+    <li>description and source-code<pre class="apidocCodePre">colorTrans = function (message, color) {
+    var result = message;
+
+    if (Utils.colorsEnabled) {
+        result = chalk[color](message);
+    }
+
+    return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-logger.utils.getDisplayPath" id="apidoc.element.gulp-logger.utils.getDisplayPath">
+        function <span class="apidocSignatureSpan">gulp-logger.utils.</span>getDisplayPath
+        <span class="apidocSignatureSpan">(filePath, display)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getDisplayPath = function (filePath, display) {
+    var newPath;
+
+    switch (display) {
+        case 'name':
+            newPath = '';
+            break;
+        case 'abs':
+            newPath = path.dirname(filePath) + '/';
+            break;
+        case 'rel':
+<span class="apidocCodeCommentSpan">            /* falls through */
+</span>        default:
+            newPath = path.dirname(Utils.getRelativePath(filePath)) + '/';
+            break;
+    }
+
+    return newPath;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.gulp-logger.utils.getRelativePath" id="apidoc.element.gulp-logger.utils.getRelativePath">
+        function <span class="apidocSignatureSpan">gulp-logger.utils.</span>getRelativePath
+        <span class="apidocSignatureSpan">(filePath)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getRelativePath = function (filePath) {
+    return path.relative(process.cwd(), filePath);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        }
+
+        if (typeof fnOpts === 'function') {
+            processFunction(filePath, fnOpts, opts);
+        } else if (typeof fnOpts === 'object') {
+            processFilePath(filePath, fnOpts);
+        } else {
+            log(utils.<span class="apidocCodeKeywordSpan">getRelativePath</span>(filePath));
+        }
+
+        streamCallback(null, file);
+    }, loggerEndHandler);
+};
+
+module.exports = GulpLogger;
+...</pre></li>
     </ul>
 
 
